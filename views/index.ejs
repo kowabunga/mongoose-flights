@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html>
-<%- include('./layout/head') %>
+<%- include('./layout/head', {title}) %>
 
   <body>
-    <h1>
-      <%= title %>
-    </h1>
-    <p>Welcome to <%= title %>
-    </p>
+    <a href="/flights/new">Create a Flight</a>
   </body>
 
 </html>
