@@ -17,7 +17,7 @@ const flightSchema = new Schema({
   },
   departs: {
     type: Date,
-    default: Date.now() + 60 * 60 * 24 * 365,
+    default: new Date().setFullYear(new Date().getFullYear() + 1),
   },
 });
 

@@ -5,6 +5,7 @@ function newFlight(req, res, next) {
 }
 
 function create(req, res, next) {
+  console.log(req.body);
   Flight.create(req.body, (err, flight) => {
     if (err) {
       console.log(err);
@@ -14,7 +15,18 @@ function create(req, res, next) {
   });
 }
 
+function index(req, res, next) {
+  Flight.find({}, (err, flights) => {
+    if (err) {
+      console.log(err);
+    }
+
+    res.render('flights/index', { flights });
+  });
+}
+
 module.exports = {
   new: newFlight,
   create,
+  index,
 };

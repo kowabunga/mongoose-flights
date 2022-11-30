@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../layout/head.ejs', {title:'All Flights'}) %>
+    <%- include('../layout/navbar.ejs', {title:'All Flights'}) %>
+
+        <body>
+            <main class="container">
+                <% flights.forEach(flight=> { %>
+                    <div class="card">
+                        <div>
+                            <h2>
+                                Flight Details
+                            </h2>
+                            <p>
+                                <strong>Airline: </strong>
+                                <%= flight.airline %>
+                            </p>
+                            <p>
+                                <strong>Airport: </strong>
+                                <%= flight.airport %>
+                            </p>
+                            <p>
+                                <strong>Departs: </strong>
+                                <%= flight.departs.toLocaleDateString() %>
+                            </p>
+                            <p>
+                                <strong>Flight Number: </strong>
+                                <%= flight.flightNo %>
+                            </p>
+                        </div>
+                        <div>
+                            <img src="/images/undraw_world_re_768g.svg" alt="woman next to drawing of planet earth"
+                                class="glowy">
+                        </div>
+                    </div>
+                    <% }) %>
+            </main>
+        </body>
+
+</html>

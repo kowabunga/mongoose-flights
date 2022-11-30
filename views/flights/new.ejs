@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <%- include('../layout/head') %>
-</head>
+<%- include('../layout/head') %>
+    <%- include('../layout/navbar.ejs', {title:'All Flights'}) %>
 
-<body>
-    <form action="skills/create" method="POST"></form>
-</body>
+        <body>
+            <main class="container">
+                <h1>Build Your Flight</h1>
+                <form action="/flights" method="POST" class="flex flex-column">
+                    <label for="airline" class="flex">Airline
+                        <select name="airline" id="airline-select">
+                            <option value="American">American</option>
+                            <option value="Delta">Delta</option>
+                            <option value="Southwest">Southwest</option>
+                            <option value="United">United</option>
+                        </select>
+                    </label>
+                    <label for="airport" class="flex">Airport
+                        <select name="airport" id="airport-select">
+                            <option value="ATL">ATL</option>
+                            <option value="DFW">DFW</option>
+                            <option value="DEN">DEN</option>
+                            <option value="LAX">LAX</option>
+                            <option value="SAN">SAN</option>
+                        </select>
+                    </label>
+                    <label for="flightNo" class="flex">Flight Number
+                        <input type="number" min="10" max="9999" name="flightNo">
+                    </label>
+                    <button type="submit">Create Flight</button>
+                </form>
+            </main>
+        </body>
 
 </html>
