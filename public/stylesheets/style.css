@@ -78,7 +78,7 @@ select {
   margin-left: auto;
 }
 
-input[type=number] {
+input {
   width: 341px;
   margin-left: auto;
 }

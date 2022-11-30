@@ -20,12 +20,13 @@
                                 <%= flight.airport %>
                             </p>
                             <p>
-                                <strong>Departs: </strong>
-                                <%= flight.departs.toLocaleDateString() %>
-                            </p>
-                            <p>
                                 <strong>Flight Number: </strong>
                                 <%= flight.flightNo %>
+                            </p>
+                            <p>
+                                <strong>Departs: </strong>
+                                <%= new Date(flight.departs).toLocaleDateString()%>
+                                    | <%= new Date(flight.departs).toLocaleTimeString() %>
                             </p>
                         </div>
                         <div>
