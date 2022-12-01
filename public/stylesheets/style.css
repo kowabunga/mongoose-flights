@@ -139,6 +139,10 @@ a {
   filter: drop-shadow(3px 5px 2px rgb(255, 255, 255, .3))
 }
 
+.m-t {
+  margin-top: 3rem;
+}
+
 @media screen and (max-width:790px) {
   .card {
     flex-direction: column;
@@ -146,5 +150,14 @@ a {
 
   .card img {
     width: 250px;
+  }
+
+  form {
+    width: 300px;
+  }
+
+  select,
+  input {
+    width: 200px;
   }
 }

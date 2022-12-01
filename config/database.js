@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // flights, connect to a flights db or create a flights db
-mongoose.connect('mongodb://localhost/flights', {
+mongoose.connect('mongodb://127.0.0.1/flights', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

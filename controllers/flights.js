@@ -38,6 +38,7 @@ function show(req, res) {
     }
 
     console.log(flight);
+    res.render('flights/show', { flight });
   });
 }
 
