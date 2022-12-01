@@ -7,51 +7,61 @@
             <main class="container">
                 <h1>Details for flight from <%= flight.airport %>
                 </h1>
-                <div class="flex flex-column">
-                    <div class="card">
-                        <div>
-                            <p>
-                                <strong>Airline: </strong>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Airline</th>
+                            <th>Airport</th>
+                            <th>Flight Number</th>
+                            <th>Destinations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
                                 <%= flight.airline %>
-                            </p>
-                            <p>
-                                <strong>Airport: </strong>
+                            </td>
+                            <td>
                                 <%= flight.airport %>
-                            </p>
-                            <p>
-                                <strong>Flight Number: </strong>
+                            </td>
+                            <td>
                                 <%= flight.flightNo %>
-                            </p>
-                            <% if (flight.destinations.length> 0) { %>
-                                <p>
-                                    <strong>Flight Destinations:</strong><br />
-                                    <% flight.destinations.forEach(destination=> { %>
-                                        <br />
-
-                                        <%= destination.airport %> |
-                                            <%= new Date(destination.arrival).toLocaleDateString()%>
-                                                | <%= new Date(destination.arrival).toLocaleTimeString() %>
-                                                    <% }) %>
-                                </p>
-                                <% } %>
-                                    <h3>Add a Destination to this Flight</h3>
-                                    <form action="/flights/<%= flight._id %>/destinations" method="POST"
-                                        class="flex flex-column">
-                                        <label for="airport" class="flex">Destination
-                                            <select name="airport" id="airport-select" required>
-                                                <option value="AUS">AUS</option>
-                                                <option value="DFW">DFW</option>
-                                                <option value="DEN">DEN</option>
-                                                <option value="LAX">LAX</option>
-                                                <option value="SAN">SAN</option>
-                                            </select>
-                                        </label>
-                                        <button type="submit">Add Destination</button>
-                                    </form>
-                        </div>
-                    </div>
-
-                </div>
+                            </td>
+                            <td>
+                                <% if (flight.destinations.length> 0) { %>
+                                    <ul>
+                                        <% flight.destinations.forEach(destination=> { %>
+                                            <li>
+                                                <%= destination.airport %> |
+                                                    <%= new Date(destination.arrival).toLocaleDateString()%>
+                                                        | <%= new Date(destination.arrival).toLocaleTimeString() %>
+                                                            <% }) %>
+                                            </li>
+                                            <% } else{ %>
+                                                <li>
+                                                    No destinations. Add one below.
+                                                </li>
+                                                <% } %>
+                                    </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <h2>Add a Destination to this Flight</h2>
+                <form action="/flights/<%= flight._id %>/destinations" method="POST" class="flex flex-column">
+                    <label for="airport" class="flex">Destination
+                        <select name="airport" id="airport-select" required>
+                            <option value="AUS">AUS</option>
+                            <option value="DFW">DFW</option>
+                            <option value="DEN">DEN</option>
+                            <option value="LAX">LAX</option>
+                            <option value="SAN">SAN</option>
+                        </select>
+                    </label>
+                    <button type="submit">Add Destination</button>
+                </form>
             </main>
         </body>
 
