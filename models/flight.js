@@ -25,16 +25,9 @@ const flightSchema = new Schema({
   },
   departs: {
     type: Date,
+    default: new Date().setFullYear(new Date().getFullYear() + 1),
   },
   destinations: [destinationSchema],
-});
-
-flightSchema.pre('save', function (next) {
-  const date = new Date(this.departs);
-
-  this.departs = date.setFullYear(date.getFullYear() + 1);
-
-  next();
 });
 
 module.exports = model('Flight', flightSchema);

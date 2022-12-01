@@ -4,8 +4,8 @@ const flightController = require('../controllers/flights');
 
 /* GET users listing. */
 router.get('/', flightController.index);
-
 router.get('/new', flightController.new);
+router.get('/:id', flightController.show);
 
 router.post('/', flightController.create);
 

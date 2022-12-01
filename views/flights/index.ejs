@@ -28,6 +28,7 @@
                                 <%= new Date(flight.departs).toLocaleDateString()%>
                                     | <%= new Date(flight.departs).toLocaleTimeString() %>
                             </p>
+                            <a href="/flights/<%= flight._id %> " class="flex">View Flight Details</a>
                         </div>
                         <div>
                             <img src="/images/undraw_world_re_768g.svg" alt="woman next to drawing of planet earth"
