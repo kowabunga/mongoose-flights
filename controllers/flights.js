@@ -4,42 +4,40 @@ function newFlight(req, res) {
   res.render('flights/new', { title: 'Add a flight' });
 }
 
-function create(req, res) {
-  console.log(req.body);
-
+async function create(req, res) {
   // Check if user entered a departure date for the flight. If not, remove the departs key/value pair from req.body so the default value from our Flights model applies
   if (req.body.departs === '') {
     delete req.body.departs;
   }
 
-  Flight.create(req.body, (err, flight) => {
-    if (err) {
-      console.log(err);
-    }
+  try {
+    const flightDoc = await Flight.create(req.body);
 
     res.redirect('/');
-  });
+  } catch (error) {
+    console.log(error);
+    res.send('Error, check terminal');
+  }
 }
 
-function index(req, res) {
-  Flight.find({}, (err, flights) => {
-    if (err) {
-      console.log(err);
-    }
-
-    res.render('flights/index', { flights });
-  });
+async function index(req, res) {
+  try {
+    const flightDocs = await Flight.find({});
+    res.render('flights/index', { flights: flightDocs });
+  } catch (error) {
+    console.log(error);
+    res.send('Error, check terminal');
+  }
 }
 
-function show(req, res) {
-  Flight.findById(req.params.id, (err, flight) => {
-    if (err) {
-      console.log(err);
-    }
-
-    console.log(flight);
-    res.render('flights/show', { flight });
-  });
+async function show(req, res) {
+  try {
+    const flightDoc = await Flight.findById(req.params.id);
+    res.render('flights/show', { flight: flightDoc });
+  } catch (error) {
+    console.log(error);
+    res.send('Error, check terminal');
+  }
 }
 
 module.exports = {

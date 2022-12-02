@@ -1,8 +1,10 @@
 const Flight = require('../models/flight');
 
-function create(req, res) {
-  Flight.findById(req.params.id, (err, flight) => {
-    const departure = new Date(flight.departs);
+async function create(req, res) {
+  try {
+    const flightDoc = await Flight.findById(req.params.id);
+
+    const departure = new Date(flightDoc.departs);
     let arrival = departure.setTime(
       // current time + :
       // 1000 ms * 60 = 1min
@@ -11,12 +13,15 @@ function create(req, res) {
       departure.getTime() + 1000 * 60 * 60 * Math.floor(Math.random() * 10)
     );
     req.body.arrival = new Date(arrival);
-    flight.destinations.push(req.body);
-    flight.save(err => {
-      console.log(err);
-      res.redirect(`/flights/${req.params.id}`);
-    });
-  });
+    flightDoc.destinations.push(req.body);
+
+    await flightDoc.save();
+
+    res.redirect(`/flights/${req.params.id}`);
+  } catch (error) {
+    console.log(error);
+    res.send('Error, check terminal');
+  }
 }
 
 module.exports = {
