@@ -30,46 +30,73 @@
                             <td>
                                 <% if (flight.destinations.length> 0) { %>
                                     <ul>
-                                        <% flight.destinations.forEach(destination=> { %>
-                                            <li>
-                                                <%= destination.airport %> |
-                                                    <%= new Date(destination.arrival).toLocaleDateString()%>
-                                                        | <%= new Date(destination.arrival).toLocaleTimeString() %>
-                                                            <% }) %>
-                                            </li>
-                                            <% } else{ %>
-                                                <li>
-                                                    No destinations. Add one below.
-                                                </li>
-                                                <% } %>
+                                        <li>
+                                            <% flight.destinations.forEach((destination,idx)=> { %>
+                                                <%= destination.airport %>
+                                                    <% if (idx < flight.destinations.length -1) { %>
+                                                        <%= '|' %>
+                                                            <% } %>
+
+                                                                <% }) %>
+                                                                    <% } else{ %>
+                                        </li>
+                                        <li>
+                                            No destinations. Add one below.
+                                        </li>
+                                        <% } %>
                                     </ul>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <br>
-                <br>
-                <h2>Add a Destination to this Flight</h2>
-                <form action="/flights/<%= flight._id %>/destinations" method="POST" class="flex flex-column">
-                    <label for="airport" class="flex">Destination
-                        <select name="airport" id="airport-select" required>
-                            <option value="AUS">AUS</option>
-                            <option value="DFW">DFW</option>
-                            <option value="DEN">DEN</option>
-                            <option value="LAX">LAX</option>
-                            <option value="SAN">SAN</option>
-                        </select>
-                    </label>
-                    <button type="submit">Add Destination</button>
-                </form>
-                <h3>View a List of Booked Seats</h3>
-                <% if (tickets.length> 0) { %>
-                    <!-- @TODO Display tickets -->
-                    <% } else { %>
-                        <p>No tickets created for this flight yet.</p>
-                        <%}%>
-                            <h3>Ready to Book?</h3>
-                            <a href="/flights/<%= flight._id%>/tickets/new">Buy Tickets</a>
+
+                <div class="destination">
+                    <h2>Add a Destination to this Flight</h2>
+                    <form action="/flights/<%= flight._id %>/destinations" method="POST" class="flex flex-column">
+                        <label for="airport" class="flex">Destination
+                            <select name="airport" id="airport-select" required>
+                                <option value="AUS">AUS</option>
+                                <option value="DFW">DFW</option>
+                                <option value="DEN">DEN</option>
+                                <option value="LAX">LAX</option>
+                                <option value="SAN">SAN</option>
+                            </select>
+                        </label>
+                        <button type="submit">Add Destination</button>
+                    </form>
+                </div>
+                <h2>Departure and Arrival Times</h2>
+                <%= new Date(destination.arrival).toLocaleDateString()%>
+                    | <%= new Date(destination.arrival).toLocaleTimeString() %>
+                        <h2>View a List of Booked Seats</h2>
+                        <% if (tickets.length> 0) { %>
+                            <h3>The Following Seats have been Booked </h3>
+                            <!-- @TODO Display tickets -->
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Seat Number</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% tickets.forEach(ticket=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= ticket.seat %>
+                                            </td>
+                                            <td>
+                                                $<%= ticket.price %>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+                            <% } else { %>
+                                <p>No tickets created for this flight yet.</p>
+                                <%}%>
+                                    <h3>Ready to Book?</h3>
+                                    <a href="/flights/<%= flight._id%>/tickets/new">Buy Tickets</a>
             </main>
         </body>
 
