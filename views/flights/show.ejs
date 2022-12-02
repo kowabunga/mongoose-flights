@@ -62,8 +62,14 @@
                     </label>
                     <button type="submit">Add Destination</button>
                 </form>
-                <h3>Ready to Book?</h3>
-                <a href="/flights/<%= flight._id%>/tickets/new">Buy Tickets</a>
+                <h3>View a List of Booked Seats</h3>
+                <% if (tickets.length> 0) { %>
+                    <!-- @TODO Display tickets -->
+                    <% } else { %>
+                        <p>No tickets created for this flight yet.</p>
+                        <%}%>
+                            <h3>Ready to Book?</h3>
+                            <a href="/flights/<%= flight._id%>/tickets/new">Buy Tickets</a>
             </main>
         </body>
 

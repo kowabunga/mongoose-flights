@@ -1,4 +1,5 @@
 const Flight = require('../models/flight');
+const Ticket = require('../models/ticket');
 
 function newFlight(req, res) {
   res.render('flights/new', { title: 'Add a flight' });
@@ -33,7 +34,9 @@ async function index(req, res) {
 async function show(req, res) {
   try {
     const flightDoc = await Flight.findById(req.params.id);
-    res.render('flights/show', { flight: flightDoc });
+    const ticketsDoc = await Ticket.find({ flight: req.params.id });
+    console.log(ticketsDoc);
+    res.render('flights/show', { flight: flightDoc, tickets: ticketsDoc });
   } catch (error) {
     console.log(error);
     res.send('Error, check terminal');

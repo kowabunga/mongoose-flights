@@ -21,20 +21,7 @@ async function create(req, res) {
   }
 }
 
-async function getAllTicketsForFlight(req, res) {
-  try {
-    // You don't need to do a double query or populate... you can just query for the ticket by the flight id passed in as the req.params.id
-    const tickets = await Ticket.find({ flight: req.params.id });
-
-    console.log(tickets);
-  } catch (error) {
-    console.log(error);
-    res.send('error, check in terminal');
-  }
-}
-
 module.exports = {
   create,
   new: newTicket,
-  index: getAllTicketsForFlight,
 };
