@@ -7,48 +7,50 @@
             <main class="container">
                 <h1>Details for flight from <%= flight.airport %>
                 </h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Airline</th>
-                            <th>Airport</th>
-                            <th>Flight Number</th>
-                            <th>Destinations</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <%= flight.airline %>
-                            </td>
-                            <td>
-                                <%= flight.airport %>
-                            </td>
-                            <td>
-                                <%= flight.flightNo %>
-                            </td>
-                            <td>
-                                <% if (flight.destinations.length> 0) { %>
-                                    <ul>
-                                        <li>
-                                            <% flight.destinations.forEach((destination,idx)=> { %>
-                                                <%= destination.airport %>
-                                                    <% if (idx < flight.destinations.length -1) { %>
-                                                        <%= '|' %>
-                                                            <% } %>
+                <div class="table-div">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Airline</th>
+                                <th>Airport</th>
+                                <th>Flight Number</th>
+                                <th>Destinations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <%= flight.airline %>
+                                </td>
+                                <td>
+                                    <%= flight.airport %>
+                                </td>
+                                <td>
+                                    <%= flight.flightNo %>
+                                </td>
+                                <td>
+                                    <% if (flight.destinations.length> 0) { %>
+                                        <ul>
+                                            <li>
+                                                <% flight.destinations.forEach((destination,idx)=> { %>
+                                                    <%= destination.airport %>
+                                                        <% if (idx < flight.destinations.length -1) { %>
+                                                            <%= '|' %>
+                                                                <% } %>
 
-                                                                <% }) %>
-                                                                    <% } else{ %>
-                                        </li>
-                                        <li>
-                                            No destinations. Add one below.
-                                        </li>
-                                        <% } %>
-                                    </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                                                    <% }) %>
+                                                                        <% } else{ %>
+                                            </li>
+                                            <li>
+                                                No destinations. Add one below.
+                                            </li>
+                                            <% } %>
+                                        </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="destination">
                     <h2>Add a Destination to this Flight</h2>
@@ -67,32 +69,34 @@
                 </div>
 
                 <h2>Departure and Arrival Times</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Departing Time</th>
-                            <th>Arrival Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% flight.destinations.forEach(destination=> { %>
-
+                <div class="table-div">
+                    <table>
+                        <thead>
                             <tr>
-                                <td>
-                                    <%= new Date(flight.departs).toLocaleDateString()%> |
-                                        <%= new Date(flight.departs).toLocaleTimeString()%>
-                                </td>
-                                <td>
-                                    <%= new Date(destination.arrival).toLocaleDateString() %> |
-                                        <%= new Date(destination.arrival).toLocaleTimeString() %>
-                                </td>
+                                <th>Departing Time</th>
+                                <th>Arrival Time</th>
                             </tr>
+                        </thead>
+                        <tbody>
+                            <% flight.destinations.forEach(destination=> { %>
 
-                            <% }) %>
-                    </tbody>
-                </table>
-                <br></tbody>
-                </table>
+                                <tr>
+                                    <td>
+                                        <%= new Date(flight.departs).toLocaleDateString()%> |
+                                            <%= new Date(flight.departs).toLocaleTimeString()%>
+                                    </td>
+                                    <td>
+                                        <%= new Date(destination.arrival).toLocaleDateString() %> |
+                                            <%= new Date(destination.arrival).toLocaleTimeString() %> |
+                                                <%= destination.airport %>
+                                    </td>
+                                </tr>
+
+                                <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
                 <br>
                 <h2>View a List of Booked Seats</h2>
                 <% if (tickets.length> 0) { %>

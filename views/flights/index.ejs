@@ -8,39 +8,41 @@
                 <h1>
                     Available Flights
                 </h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Airline</th>
-                            <th>Airport</th>
-                            <th>Flight Number</th>
-                            <th>Departs</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% flights.forEach(flight=> { %>
+                <div class="table-div">
+                    <table>
+                        <thead>
                             <tr>
-                                <td>
-                                    <%= flight.airline %>
-                                </td>
-                                <td>
-                                    <%= flight.airport %>
-                                </td>
-                                <td>
-                                    <%= flight.flightNo %>
-                                </td>
-                                <td>
-                                    <%= new Date(flight.departs).toLocaleDateString()%>
-                                        | <%= new Date(flight.departs).toLocaleTimeString() %>
-                                </td>
-                                <td>
-                                    <a href="/flights/<%= flight._id %> " class="flex">Details</a>
-                                </td>
+                                <th>Airline</th>
+                                <th>Airport</th>
+                                <th>Flight Number</th>
+                                <th>Departs</th>
+                                <th></th>
                             </tr>
-                            <% }) %>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <% flights.forEach(flight=> { %>
+                                <tr>
+                                    <td>
+                                        <%= flight.airline %>
+                                    </td>
+                                    <td>
+                                        <%= flight.airport %>
+                                    </td>
+                                    <td>
+                                        <%= flight.flightNo %>
+                                    </td>
+                                    <td>
+                                        <%= new Date(flight.departs).toLocaleDateString()%>
+                                            | <%= new Date(flight.departs).toLocaleTimeString() %>
+                                    </td>
+                                    <td>
+                                        <a href="/flights/<%= flight._id %> " class="flex">Details</a>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                </div>
             </main>
         </body>
 

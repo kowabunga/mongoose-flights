@@ -144,7 +144,7 @@ ul {
   }
 
   form {
-    width: 300px;
+    width: 325px;
   }
 
   select,
@@ -152,8 +152,7 @@ ul {
     width: 200px;
   }
 
-  table {
-    transform: scale(.75);
-    margin: 0 auto;
+  .table-div {
+    overflow-x: auto;
   }
 }

@@ -35,7 +35,6 @@ async function show(req, res) {
   try {
     const flightDoc = await Flight.findById(req.params.id);
     const ticketsDoc = await Ticket.find({ flight: req.params.id });
-    console.log(ticketsDoc);
     res.render('flights/show', { flight: flightDoc, tickets: ticketsDoc });
   } catch (error) {
     console.log(error);

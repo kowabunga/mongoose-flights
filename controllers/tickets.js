@@ -10,7 +10,6 @@ async function create(req, res) {
   try {
     const { seat, price } = req.body;
     const { id: flightId } = req.params;
-    console.log(seat, price, flightId);
 
     const ticket = await Ticket.create({ seat, price, flight: flightId });
 
