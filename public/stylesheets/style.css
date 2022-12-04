@@ -151,4 +151,9 @@ ul {
   input {
     width: 200px;
   }
+
+  table {
+    transform: scale(.75);
+    margin: 0 auto;
+  }
 }
